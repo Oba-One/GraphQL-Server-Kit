@@ -39,7 +39,23 @@ Getting Started with a GraphQL Server can sometimes seem intimadating. There's a
 * [Body-Parser](https://github.com/expressjs/body-parser) -  Node.js body parsing middleware. Parse incoming request bodies in a middleware before your handlers, available under the req.body property. 
 
 ***
-## Server Setup
+# Server Setup
+
+## Stage 1: Basic Server
+#### Folder Structure
+![1st Folder Structure](./assets/folder-structure/1fs.png "1st Folder Structure")
+
+Install express, nodemon, and babel
+Install eslint 
+
+## Stage 2: Adding GraphQL & Apollo
+Install apollo dotenv
+
+## Stage 3: Hello Middleware
+Install helmet, morgan, cors, compression, body parser
+
+##  Stage 4: Continious Integration/Deployment
+Add circleci, dockerfile, and app.yaml 
 
 Detailed setup and structure of GraphQL Server.
 
