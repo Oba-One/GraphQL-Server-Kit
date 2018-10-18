@@ -1,6 +1,6 @@
 # GraphQL-Server-Kit
-![GraphQL Logo](./assets/graphql.png "GraphQL Logo")
 
+![GraphQL Logo](./assets/graphql.png "GraphQL Logo")
 
 Getting Started with a GraphQL Server can sometimes seem intimadating. There's a good amount of overhead involved in set up with redundant code and dependencies. To save time, I built a GraphQL Server Kit for easily getting started with GraphQL with all the necessary and helpful packages pre-installed. The server is built on Node.js with Express.js and GraphQL sitting on top. 
 ***
@@ -52,17 +52,19 @@ The initial stage is a basic express server with babel, nodemon, and eslint.
 ![1st Folder Structure](./assets/folder-structure/1fs.png "1st Folder Structure")
 
 Before getting started writing code, babel is installed allowing the use of ES6 and above. 
-![](. "Babel")
+![Babel Config](./assets/configs/babel.png "Babel Config")
 
 Next nodemon is a package for automatically restarting a node server speeding up development workflow.
 A script is created for running nodemon and babel to transpile the code and start the server.
-![](. "Nodemon")
+![Nodemon Config](./assets/configs/nodemon.png "Nodemon Config")
 
 To type check and ensure no errors are made when writing code ESlint is a great tool. It can be configured to fit your development workflow.
-![](. "Eslint")
+There's a freat plugin to setup eslint for node `eslint-config-node`.
+![Eslint Config](./assets/configs/eslint.png "Eslint Config")
 
 Now with everything configured for development adding express is simple with only a few lines of codes.
-![](. "Express")
+![Express Server Index.js](./assets/index.js/1.express.png "Express Server Index.js")
+***
 
 ### Stage 2: Adding GraphQL & Apollo
 
@@ -74,23 +76,50 @@ With now a simple express server stage 2 builds upon by adding Apollo to transfo
 
 Incoproating GraphQL into a server is made simpler with Apollo Server a framework for graphql servers. Using Apollo with Express requires one dependency `apollo-server-express`. The sever by default reuires two arguments typDefs and Resolvers. 
 
-The typeDef is your schema and the resolvers functions that resolver request. 
+
+The typeDef is your schema which defines your queries and mutations.
+
+![Schema](./assets/graphql/scheam.png "Schema")
+
+Resolvers are used to execute and resolve queries and mutations.
+
+![Resolvers](./assets/graphql/resolvers.png "Resolvers")
 
 The folder structure will change and graphql directory is added with the schema and resolver inside. Also is the new utils directoy which holds any high order functions that may be used for error handling and other things. 
+
+The index.js is now updated with Apollo implemented 
+
+![GraphQL](./assets/index.js/2.graphql.png "GraphQL")
+***
 
 
 ### Stage 3:  Middleware
 
-The server now has graphql capabilities and if satisfied one can start from this stage when building their server. However since the server is built upon Express it can utilize some of Express great middleware packages.
+The server now has graphql capabilities and if satisfied one can start from this stage when building their server. However since the server is built upon Express it can utilize some of Express middleware packages.
 
 #### Folder Structure
+
+The folddr strucure remains the same with only the changes being implemented in the index.js file.
 ![2nd Folder Structure](./assets/folder-structure/2fs.png "2nd Folder Structure")
 
-Express comes with middleware packages for upgrading security, logging, and much more. 
 
-Install helmet, morgan, cors, compression, body parser
+Express comes with middleware packages for upgrading security, logging, and much more.
+
+* **Helmet** - Secures Express apps by setting various HTTP headers to ensure when request are made the data transferred is secured.
+
+* **Morgan** - Is a request logger that tracks request helping to track and trace errors.
+
+* **Cors** - Enables Cross Orgin Resource Sharing for servers allowing request across domains.
+
+* **Compression** - Compresses response body and help to speed up applications.
+
+Using the middleware is simple by implementing `app.use(middleware)`. The index.js file now completed with middleware imported.
+
+![Index.js Middleware](./assets/index.js/3.middleware.png "Index.js Middleware")
+***
 
 ### Stage 4: Continious Integration/Deployment
+
 ![3rd Folder Structure](./assets/folder-structure/3fs.png "3rd Folder Structure")
 For continious integration and deployment CircleCI is used to trak our builds and ensure all dependencies are implemented properly.
 
@@ -99,4 +128,4 @@ For deployment app.yaml is used for deploying to Google Cloud, specifically App 
 For building an image that can be deployed to Kubernetes docker is implemented.
 
 Add circleci, dockerfile, and app.yaml 
-
+***
